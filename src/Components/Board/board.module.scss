@@ -1,7 +1,7 @@
 .board {
   width: 25rem;
   height: 25rem;
-  margin: 15rem auto;
+  margin: 12rem auto;
   display: grid;
   grid-template: repeat(3, 1fr) / repeat(3, 1fr);
 }

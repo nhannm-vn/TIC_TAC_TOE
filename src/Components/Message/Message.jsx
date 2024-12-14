@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './message.module.scss'
+import { returntTitle } from './support.message'
 
 function Message(props) {
   const { status, player } = props
@@ -13,24 +14,6 @@ function Message(props) {
   const subTitle = returntTitle(status, player)
 
   return <div>{status ? subTitle : mainTitle}</div>
-}
-
-function returntTitle(status, player) {
-  if (status === player.human) {
-    return (
-      <h2 className={styles.title}>
-        Congratulations <span>X Win</span>
-      </h2>
-    )
-  } else if (status === player.computer) {
-    return (
-      <h2 className={styles.title}>
-        Congratulations <span>O Win</span>
-      </h2>
-    )
-  } else {
-    return <h2>Draw</h2>
-  }
 }
 
 export default Message

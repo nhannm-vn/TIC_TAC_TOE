@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Board from '../Board/Board'
 import { difference } from 'lodash'
 import Message from '../Message/Message'
+import Button from '../Button/Button'
 
 //_Function giúp xác định các nước cờ của computer
 function determineComputerMove(board, player) {
@@ -195,6 +196,7 @@ function Game() {
     <div>
       <Message status={status} player={player} />
       <Board boardList={boardList} handleClick={handleClick} />
+      <Button />
     </div>
   )
 }
