@@ -28,10 +28,6 @@ const isWon = (board) => {
 
 //_Kiểm tra trường hợp hòa
 const isDraw = (board) => {
-  //_Nếu mà bàn cờ còn ô mà chưa phân thắng bại thì cứ đánh
-  //còn nếu bít rồi mà chưa thắng bại thì là draw
-  //nghĩa là bàn cờ phải full hết và không có ô nào đc bỏ trống
-
   //_lọc ra các thằng bỏ trống ta được cái mảng mà nếu cái mảng đó rỗng nghĩa là
   //ô nào cũng được điền và như vậy là draw
   return board.filter((box) => !box).length === 0
@@ -43,6 +39,9 @@ function Game() {
   //_State để dừng game khi thắng thua hòa
   //_Ban đầu thì cho false nghĩa là vẫn chơi được bình thường
   const [isGameStopped, setGameStop] = useState(false)
+
+  //_Sate dùng để thông báo thắng thua
+  const [message, setMessage] = useState('Tic tac toe')
 
   const player = {
     human: 'X',
@@ -71,16 +70,30 @@ function Game() {
     //NGHĨA LÀ MỚI DESTRUCTURING LẠI STATE THÌ CÓ KHI NÓ CẬP NHẬT KHÔNG KỊP
 
     //_check draw and win condition
+
     //nếu thắng thì ta không có bấm nữa
     //đồng thời dừng game lại(tạo thêm state)
     if (isWon(boardListCopy)) {
+      setMessage(`Won ${player.human}`)
       //_set biến lại để dừng game
+      setGameStop(true)
+      return
+    }
+
+    if (isDraw(boardListCopy)) {
+      setMessage('DRAW')
+      //_set biến lại để dừng luôn game
       setGameStop(true)
       return
     }
   }
 
-  return <Board boardList={boardList} handleClick={handleClick} />
+  return (
+    <div>
+      <h3>{message}</h3>
+      <Board boardList={boardList} handleClick={handleClick} />
+    </div>
+  )
 }
 
 export default Game
