@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Board from '../Board/Board'
 import { difference } from 'lodash'
+import Message from '../Message/Message'
 
 //_Function giúp xác định các nước cờ của computer
 function determineComputerMove(board, player) {
@@ -116,7 +117,7 @@ function Game() {
   const [isGameStopped, setGameStop] = useState(false)
 
   //_Sate dùng để thông báo thắng thua
-  const [message, setMessage] = useState('Tic tac toe')
+  const [status, setStatus] = useState('')
 
   const player = {
     human: 'X',
@@ -149,14 +150,14 @@ function Game() {
     //nếu thắng thì ta không có bấm nữa
     //đồng thời dừng game lại(tạo thêm state)
     if (isWon(boardListCopy)(player.human)) {
-      setMessage(`Won ${player.human}`)
+      setStatus(player.human)
       //_set biến lại để dừng game
       setGameStop(true)
       return
     }
 
     if (isDraw(boardListCopy)) {
-      setMessage('DRAW')
+      setStatus('DRAW')
       //_set biến lại để dừng luôn game
       setGameStop(true)
       return
@@ -175,14 +176,14 @@ function Game() {
 
       //_Check để thông báo và dừng game cho condition của human
       if (isWon(boardListCopy2)(player.computer)) {
-        setMessage(`Won ${player.computer}`)
+        setStatus(player.computer)
         //_set biến lại để dừng game
         setGameStop(true)
         return
       }
 
       if (isDraw(boardListCopy2)) {
-        setMessage('DRAW')
+        setStatus('DRAW')
         //_set biến lại để dừng luôn game
         setGameStop(true)
         return
@@ -192,7 +193,7 @@ function Game() {
 
   return (
     <div>
-      <h3>{message}</h3>
+      <Message status={status} player={player} />
       <Board boardList={boardList} handleClick={handleClick} />
     </div>
   )
