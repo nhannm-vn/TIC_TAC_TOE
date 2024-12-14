@@ -37,11 +37,11 @@ const winPattern = [
   [2, 4, 6]
 ]
 //_Kiểm tra xem như thế nào là win
-const isWon = (board) => {
+const isWon = (board) => (icon) => {
   for (let i = 0; i < winPattern.length; i++) {
     let [a, b, c] = winPattern[i]
     //_Dò thử xem nếu board mà có giá trị ở các vị trí đó thì nghĩa là win
-    if (board[a] === 'X' && board[b] === 'X' && board[c] === 'X') {
+    if (board[a] === icon && board[b] === board[c] && board[c] === board[a]) {
       return true
     }
   }
@@ -96,7 +96,7 @@ function Game() {
 
     //nếu thắng thì ta không có bấm nữa
     //đồng thời dừng game lại(tạo thêm state)
-    if (isWon(boardListCopy)) {
+    if (isWon(boardListCopy)(player.human)) {
       setMessage(`Won ${player.human}`)
       //_set biến lại để dừng game
       setGameStop(true)
@@ -111,6 +111,31 @@ function Game() {
     }
 
     //computermove
+
+    //_Mình muốn đánh xong đợi tí rồi máy mới đánh
+    setTimeout(() => {
+      const computerIndex = determineComputerMove(boardListCopy, player)
+      //_Mình sẽ copy lại cái bảng vì mình không muốn reference tới đó
+      //mặc khác sẽ dễ sử dụng
+      const boardListCopy2 = [...boardListCopy]
+      boardListCopy2[computerIndex] = player.computer
+      setboardList(boardListCopy2)
+
+      //_Check để thông báo và dừng game cho condition của human
+      if (isWon(boardListCopy2)(player.computer)) {
+        setMessage(`Won ${player.computer}`)
+        //_set biến lại để dừng game
+        setGameStop(true)
+        return
+      }
+
+      if (isDraw(boardListCopy2)) {
+        setMessage('DRAW')
+        //_set biến lại để dừng luôn game
+        setGameStop(true)
+        return
+      }
+    }, 500)
   }
 
   return (
