@@ -2,28 +2,9 @@ import React, { useState } from 'react'
 import Board from '../Board/Board'
 import Message from '../Message/Message'
 import Button from '../Button/Button'
-import { winPattern } from '../../Constants/winPattern'
 import determineComputerMove from '../../Functions/determineComputerMove'
-
-//_Kiểm tra xem như thế nào là win
-const isWon = (board) => (icon) => {
-  for (let i = 0; i < winPattern.length; i++) {
-    let [a, b, c] = winPattern[i]
-    //_Dò thử xem nếu board mà có giá trị ở các vị trí đó thì nghĩa là win
-    if (board[a] === icon && board[b] === board[c] && board[c] === board[a]) {
-      return true
-    }
-  }
-  //_Nếu k có thì là false
-  return false
-}
-
-//_Kiểm tra trường hợp hòa
-const isDraw = (board) => {
-  //_lọc ra các thằng bỏ trống ta được cái mảng mà nếu cái mảng đó rỗng nghĩa là
-  //ô nào cũng được điền và như vậy là draw
-  return board.filter((box) => !box).length === 0
-}
+import { isWon } from '../../Functions/isWon'
+import { isDraw } from '../../Functions/isDraw'
 
 function Game() {
   //_Danh sách để lưu lại khi đánh và render giá trị ra cho box
