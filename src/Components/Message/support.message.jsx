@@ -14,6 +14,6 @@ export function returntTitle(status, player) {
       </h2>
     )
   } else {
-    return <h2>Draw</h2>
+    return <h2 className={styles.title}>Draw</h2>
   }
 }
