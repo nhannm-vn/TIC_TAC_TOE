@@ -59,6 +59,8 @@ export default function determineComputerMove(board, player) {
   }
 
   //_________If cannot middle, then random
+
+  //_Nếu không đánh giữa hoặc không biết đánh đâu thì quất random đi
   let randomPosition = getRandomInt(0, 9)
   //_Nếu đánh ở vị trí bất kỳ mà
   //vị trí đó k trống thì random vị trí khác

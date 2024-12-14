@@ -5,6 +5,7 @@ import Button from '../Button/Button'
 import determineComputerMove from '../../Functions/determineComputerMove'
 import { isWon } from '../../Functions/isWon'
 import { isDraw } from '../../Functions/isDraw'
+import { player } from '../../Constants/player'
 
 function Game() {
   //_Danh sách để lưu lại khi đánh và render giá trị ra cho box
@@ -15,11 +16,6 @@ function Game() {
 
   //_Sate dùng để thông báo thắng thua
   const [status, setStatus] = useState('')
-
-  const player = {
-    human: 'X',
-    computer: 'O'
-  }
 
   //_Đưa vị trí vào và sau đó set lại value cho vị trí đó trong mảng
   const handleClick = (pos) => {

@@ -4,13 +4,13 @@ export function returntTitle(status, player) {
   if (status === player.human) {
     return (
       <h2 className={styles.title}>
-        Congratulations <span>X Win</span>
+        Congratulations <span>✖️ Win</span>
       </h2>
     )
   } else if (status === player.computer) {
     return (
       <h2 className={styles.title}>
-        Congratulations <span>O Win</span>
+        Congratulations <span>⭕ Win</span>
       </h2>
     )
   } else {
