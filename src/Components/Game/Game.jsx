@@ -1,12 +1,59 @@
 import React, { useState } from 'react'
 import Board from '../Board/Board'
+import { difference } from 'lodash'
 
 //_Function giúp xác định các nước cờ của computer
 function determineComputerMove(board, player) {
-  // If can win, then win
-  // If cannot win, then block
-  // If cannot block, take the middle
-  // If cannot middle, then random
+  //_Tạo cái mảng kt pos computer
+  const computerMoves = []
+  //_Tạo cái mảng kt post human
+  const humanMoves = []
+  board.forEach((box, index) => {
+    if (box === player.computer) {
+      computerMoves.push(index)
+    }
+    if (box === player.human) {
+      humanMoves.push(index)
+    }
+  })
+
+  //_________If can win, then win
+
+  for (const pattern of winPattern) {
+    //_Đầu tiên kt trong danh sách đánh coi có vô thế nào mà còn 1 nước nữa win không
+    const winPositions = difference(pattern, computerMoves)
+    if (winPositions.length === 1) {
+      //_Nếu như còn đúng một chỗ thì phải kiểm tra xe chỗ đó có ai đánh chưa
+      //nếu chưa thì dứt liền
+      const posWin = winPositions[0]
+      if (!board[posWin]) {
+        //_Nếu chỗ đó chưa ai đánh thì đưa ra để cho đánh liền
+        return posWin
+      }
+    }
+  }
+
+  //_________If cannot win, then block
+
+  for (const pattern of winPattern) {
+    //_Đầu tiên kt trong danh sách đánh coi có vô thế nào mà còn 1 nước nữa
+    //human win thì mình sẽ block vị trí đó
+    const winPositions = difference(pattern, humanMoves)
+    if (winPositions.length === 1) {
+      //_Kiểm tra xem vị trí đó có ai đánh chưa
+      const posWin = winPositions[0]
+      if (!board[posWin]) {
+        //_Nếu chỗ đó chưa ai đánh thì đưa ra để cho đánh liền
+        return posWin
+      }
+    }
+  }
+  //_________If cannot block, take the middle
+
+  //_Nếu không chặn được gì hoặc không có gì để đánh
+  //thì ta nên đi giữa để cơ hội cao hơn
+
+  //_________If cannot middle, then random
   let randomPosition = getRandomInt(0, 9)
   //_Nếu đánh ở vị trí bất kỳ mà
   //vị trí đó k trống thì random vị trí khác
@@ -147,3 +194,8 @@ function Game() {
 }
 
 export default Game
+
+/**
+ * difference là một hàm trong lodash giúp kiểm tra xem thử là
+ * giá trị nguyên thủy trong hai mảng có gì khác nhau hay khồng
+ */
