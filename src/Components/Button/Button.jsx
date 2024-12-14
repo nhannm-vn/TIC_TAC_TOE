@@ -1,10 +1,21 @@
 import React from 'react'
 import styles from './button.module.scss'
 
-function Button() {
+function Button(props) {
+  const { setboardList, setGameStop, setStatus } = props
+
+  //_resetGame
+  const resetGame = () => {
+    setboardList(Array(9).fill(''))
+    setGameStop(false)
+    setStatus('')
+  }
+
   return (
     <div className={styles.resetBlock}>
-      <button className={styles.reset}>Reset</button>
+      <button onClick={resetGame} className={styles.reset}>
+        Reset
+      </button>
     </div>
   )
 }

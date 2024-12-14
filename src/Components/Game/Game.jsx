@@ -196,7 +196,7 @@ function Game() {
     <div>
       <Message status={status} player={player} />
       <Board boardList={boardList} handleClick={handleClick} />
-      <Button />
+      <Button setboardList={setboardList} setGameStop={setGameStop} setStatus={setStatus} />
     </div>
   )
 }
