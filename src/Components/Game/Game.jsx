@@ -1,7 +1,8 @@
 import React from 'react'
+import Board from '../Board/Board'
 
 function Game() {
-  return <h1>Tic tac toe</h1>
+  return <Board />
 }
 
 export default Game
