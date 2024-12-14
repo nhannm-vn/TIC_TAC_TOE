@@ -2,29 +2,29 @@ import React, { useState } from 'react'
 import Board from '../Board/Board'
 
 function Game() {
-  const [board, setBoard] = useState(Array(9).fill(''))
+  const [boardList, setboardList] = useState(Array(9).fill(''))
 
   const player = {
     human: 'X',
     computer: 'O'
   }
 
-  //_Đưa vị trí vào
+  //_Đưa vị trí vào và sau đó set lại value cho vị trí đó trong mảng
   const handleClick = (pos) => {
     //_TH: bấm vào ô đã có sẵn
-    if (board[pos]) {
+    if (boardList[pos]) {
       return
     }
 
     //_Nếu đánh thì chắc chắn là human vì computer thì auto
-    setBoard((prev) => {
-      const boardCopy = [...prev]
-      boardCopy[pos] = player.human
-      return boardCopy
+    setboardList((prev) => {
+      const boardListCopy = [...prev]
+      boardListCopy[pos] = player.human
+      return boardListCopy
     })
   }
 
-  return <Board value={board} onClick={handleClick} />
+  return <Board boardList={boardList} handleClick={handleClick} />
 }
 
 export default Game

@@ -4,6 +4,8 @@ import styles from './board.module.scss'
 import Box from '../Box/Box'
 
 function Board(props) {
+  const { handleClick, boardList } = props
+
   return (
     <div className={styles.board}>
       {[...Array(9)].map((_, index) => (
@@ -11,8 +13,8 @@ function Board(props) {
         //value ứng với từng index khác nhau để render ra bên box
         <Box
           key={index.toString()}
-          onClick={props.onClick} //
-          value={props.value[index]}
+          handleClick={handleClick} //
+          value={boardList[index]}
           index={index}
         />
       ))}

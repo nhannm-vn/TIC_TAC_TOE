@@ -2,10 +2,10 @@ import React from 'react'
 import styles from './box.module.scss'
 
 function Box(props) {
-  const { onClick, index, value } = props
+  const { handleClick, index, value } = props
 
   const pressBtn = () => {
-    onClick(index)
+    handleClick(index)
   }
 
   return (
