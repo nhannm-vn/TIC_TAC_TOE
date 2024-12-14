@@ -20,6 +20,7 @@ function Game() {
     setBoard((prev) => {
       const boardCopy = [...prev]
       boardCopy[pos] = player.human
+      return boardCopy
     })
   }
 
