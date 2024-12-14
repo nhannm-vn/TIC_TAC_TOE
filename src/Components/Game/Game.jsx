@@ -52,6 +52,11 @@ function determineComputerMove(board, player) {
 
   //_Nếu không chặn được gì hoặc không có gì để đánh
   //thì ta nên đi giữa để cơ hội cao hơn
+  const centerSquare = 4
+  //_Nếu chưa ai đánh thì dứt
+  if (!board[centerSquare]) {
+    return centerSquare
+  }
 
   //_________If cannot middle, then random
   let randomPosition = getRandomInt(0, 9)
