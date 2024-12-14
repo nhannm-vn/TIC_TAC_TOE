@@ -3,6 +3,7 @@ import Board from '../Board/Board'
 import { difference } from 'lodash'
 import Message from '../Message/Message'
 import Button from '../Button/Button'
+import getRandomInt from '../../Functions/getRandomInt'
 
 //_Function giúp xác định các nước cờ của computer
 function determineComputerMove(board, player) {
@@ -68,14 +69,6 @@ function determineComputerMove(board, player) {
     randomPosition = getRandomInt(0, 9)
   }
   return randomPosition
-}
-
-function getRandomInt(min, max) {
-  //_Làm tròn lên
-  min = Math.ceil(min)
-  //_Làm tròn xuống
-  max = Math.floor(max)
-  return Math.floor(Math.random() * (max - min) + min)
 }
 
 //_Các trường hợp sẽ win
