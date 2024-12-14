@@ -1,12 +1,13 @@
 //_Đây sẽ là nơi chứa các box
 import React from 'react'
+import styles from './board.module.scss'
 import Box from '../Box/Box'
 
-function Board() {
+function Board(props) {
   return (
-    <div>
+    <div className={styles.board}>
       {[...Array(9)].map((_, index) => (
-        <Box />
+        <Box key={index.toString()} onClick={() => {}} value={props.value[index]} />
       ))}
     </div>
   )
