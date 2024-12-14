@@ -1,6 +1,29 @@
 import React, { useState } from 'react'
 import Board from '../Board/Board'
 
+//_Function giúp xác định các nước cờ của computer
+function determineComputerMove(board, player) {
+  // If can win, then win
+  // If cannot win, then block
+  // If cannot block, take the middle
+  // If cannot middle, then random
+  let randomPosition = getRandomInt(0, 9)
+  //_Nếu đánh ở vị trí bất kỳ mà
+  //vị trí đó k trống thì random vị trí khác
+  while (board[randomPosition]) {
+    randomPosition = getRandomInt(0, 9)
+  }
+  return randomPosition
+}
+
+function getRandomInt(min, max) {
+  //_Làm tròn lên
+  min = Math.ceil(min)
+  //_Làm tròn xuống
+  max = Math.floor(max)
+  return Math.floor(Math.random() * (max - min) + min)
+}
+
 //_Các trường hợp sẽ win
 //mảng chứa các mảng con chứa các vị trí khi đi vào đó thì sẽ win
 const winPattern = [
@@ -86,6 +109,8 @@ function Game() {
       setGameStop(true)
       return
     }
+
+    //computermove
   }
 
   return (
