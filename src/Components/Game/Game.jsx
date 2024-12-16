@@ -83,7 +83,7 @@ function Game() {
         setGameStop(true)
         return
       }
-    }, 500)
+    }, 300)
   }
 
   return (
