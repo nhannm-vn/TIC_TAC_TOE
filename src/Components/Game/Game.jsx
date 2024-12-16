@@ -10,6 +10,8 @@ import { player } from '../../Constants/player'
 function Game() {
   //_Danh sách để lưu lại khi đánh và render giá trị ra cho box
   const [boardList, setboardList] = useState(Array(9).fill(''))
+  //
+  //
   //_State để dừng game khi thắng thua hòa
   //_Ban đầu thì cho false nghĩa là vẫn chơi được bình thường
   const [isGameStopped, setGameStop] = useState(false)
